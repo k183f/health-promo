@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#00b578" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+  <title>健康证办理 - 包通过 · 当天出证</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f7fa;
+      --white: #ffffff;
+      --primary: #00b578;
+      --primary-dark: #009966;
+      --primary-light: #e6f9f0;
+      --orange: #ff6b35;
+      --orange-dark: #e85a28;
+      --text: #1a1a1a;
+      --text2: #555555;
+      --muted: #999999;
+      --border: #eeeeee;
+      --shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 480px;
+      margin: 0 auto;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top Bar ── */
+    .top-bar {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .top-bar .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(165deg, var(--primary) 0%, #00c96b 50%, #00d680 100%);
+      color: #fff;
+      padding: 36px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 50%; transform: translateX(-50%);
+      width: 140%; height: 80px;
+      background: var(--bg);
+      border-radius: 50% 50% 0 0;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .hero-badge span { font-weight: 900; }
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #ffe14d, #ffc107);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 15px;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .hero-platforms {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .platform-tag {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    /* ── Stats Strip ── */
+    .stats-strip {
+      display: flex;
+      background: var(--white);
+      margin: -16px 16px 0;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 20px 8px;
+      position: relative;
+    }
+    .stat-item + .stat-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: var(--border);
+    }
+    .stat-num {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-num small {
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 28px 16px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .icon { font-size: 22px; }
+    .section-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── Steps ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .step-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 18px 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+    }
+    .step-num {
+      width: 36px; height: 36px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .step-body { flex: 1; }
+    .step-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .step-desc {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    /* ── Advantages ── */
+    .adv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .adv-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 18px 14px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .adv-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .adv-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .adv-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .adv-card.highlight {
+      background: var(--primary-light);
+      border-color: rgba(0,181,120,0.2);
+    }
+    .adv-card.highlight .adv-title {
+      color: var(--primary-dark);
+    }
+
+    /* ── Pricing ── */
+    .price-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 24px 20px;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card::before {
+      content: '推荐';
+      position: absolute;
+      top: 16px; right: -28px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 32px;
+      transform: rotate(45deg);
+    }
+    .price-header {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .price-currency { font-size: 18px; font-weight: 900; color: var(--orange); }
+    .price-amount { font-size: 42px; font-weight: 900; color: var(--orange); line-height: 1; }
+    .price-unit { font-size: 13px; color: var(--muted); }
+    .price-original {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-bottom: 16px;
+    }
+    .price-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .price-feat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text2);
+    }
+    .price-feat .check {
+      width: 20px; height: 20px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .price-feat strong { color: var(--text); font-weight: 700; }
+
+    /* ── Guarantee ── */
+    .guarantee {
+      background: linear-gradient(135deg, #fff8e1, #fffde7);
+      border: 1px solid #ffe082;
+      border-radius: 14px;
+      padding: 18px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .guarantee-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .guarantee-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e65100;
+      margin-bottom: 2px;
+    }
+    .guarantee-desc {
+      font-size: 12px;
+      color: #795548;
+      line-height: 1.5;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .faq-q {
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .faq-q .arrow {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.25s;
+    }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-a-inner {
+      padding: 0 16px 14px;
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ── CTA Bottom ── */
+    .cta-fixed {
+      position: fixed;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 100;
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+    }
+    .cta-info { flex: 1; }
+    .cta-price {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--orange);
+    }
+    .cta-price small { font-size: 13px; }
+    .cta-note {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .cta-btn {
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(255,107,53,0.35);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cta-btn:active {
+      transform: scale(0.96);
+      box-shadow: 0 2px 8px rgba(255,107,53,0.3);
+    }
+
+    /* ── Spacer for fixed CTA ── */
+    .bottom-spacer { height: 88px; }
+
+    /* ── Reviews ── */
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .review-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .review-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .review-platform {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .review-stars {
+      margin-left: auto;
+      color: #ffc107;
+      font-size: 12px;
+    }
+    .review-text {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 999;
+      opacity: 0;
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* ── Modal Overlay ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-sheet {
+      background: var(--white);
+      border-radius: 20px 20px 0 0;
+      width: 100%; max-width: 480px;
+      padding: 24px 20px 32px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .modal-header-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .modal-title { font-size: 18px; font-weight: 900; }
+    .modal-close { font-size: 20px; color: var(--muted); cursor: pointer; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: var(--text2); }
+    .form-input {
+      width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px;
+      font-size: 15px; font-family: inherit; outline: none; transition: border-color 0.15s;
+    }
+    .form-input:focus { border-color: var(--primary); }
+    .form-select {
+      width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px;
+      font-size: 15px; font-family: inherit; outline: none; background: var(--white); cursor: pointer;
+    }
+
+    /* ── Payment Page ── */
+    .pay-page {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      z-index: 250;
+      display: none;
+      flex-direction: column;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .pay-page.show { display: flex; }
+    .pay-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .pay-back {
+      font-size: 20px; cursor: pointer; color: var(--text);
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pay-header-title { font-size: 16px; font-weight: 700; }
+    .pay-body {
+      flex: 1; overflow-y: auto; padding: 20px 16px;
+    }
+    .pay-order-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+    }
+    .pay-order-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 0;
+      font-size: 14px;
+    }
+    .pay-order-row .label { color: var(--muted); }
+    .pay-order-row .value { font-weight: 600; }
+    .pay-amount-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0 6px;
+      margin-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .pay-amount-label { font-size: 14px; color: var(--text2); }
+    .pay-amount-value { font-size: 28px; font-weight: 900; color: var(--orange); }
+    .pay-amount-value small { font-size: 16px; }
+
+    .pay-method-title {
+      font-size: 14px; font-weight: 700; margin-bottom: 10px;
+    }
+    .pay-methods {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pay-method {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .pay-method.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .pay-method-icon { font-size: 24px; }
+    .pay-method-name { font-size: 14px; font-weight: 600; flex: 1; }
+    .pay-method-check {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: transparent;
+      transition: all 0.15s;
+    }
+    .pay-method.selected .pay-method-check {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .pay-confirm-btn {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: #fff; border: none; border-radius: 12px;
+      font-size: 16px; font-weight: 900; cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    
+    .qr-upload-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .qr-upload-box {
+      display: flex;
+      gap: 12px;
+    }
+    .qr-upload-item {
+      flex: 1;
+      text-align: center;
+    }
+    .qr-upload-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .qr-upload-btn {
+      width: 100%;
+      aspect-ratio: 1;
+      max-height: 120px;
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .qr-upload-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .qr-upload-btn.has-qr {
+      border-style: solid;
+      border-color: var(--primary);
+    }
+    .qr-upload-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .qr-upload-icon {
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+    .qr-upload-text {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .qr-upload-input {
+      display: none;
+    }
+    .qr-upload-tip {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+      text-align: center;
+    }
+    .pay-confirm-btn:active { transform: scale(0.98); }
+
+    /* ── Paying Animation ── */
+    .paying-overlay {
+      position: fixed; inset: 0;
+      background: rgba(255,255,255,0.95);
+      z-index: 300;
+      display: none;
+      align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .paying-overlay.show { display: flex; }
+    .paying-spinner {
+      width: 48px; height: 48px;
+      border: 4px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .paying-text { font-size: 16px; font-weight: 600; color: var(--text); }
+
+    /* ── Success ── */
+    .success-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 400;
+      display: none;
+      align-items: center; justify-content: center;
+    }
+    .success-overlay.show { display: flex; }
+    .success-card {
+      background: var(--white); border-radius: 20px;
+      padding: 36px 28px; text-align: center;
+      width: 90%; max-width: 320px;
+    }
+    .success-icon { font-size: 56px; margin-bottom: 16px; }
+    .success-title { font-size: 20px; font-weight: 900; margin-bottom: 8px; }
+    .success-desc { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 24px; }
+    .success-btn {
+      width: 100%; padding: 13px;
+      background: var(--primary); color: #fff; border: none;
+      border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer;
+    }
+
+    /* ── Order Check ── */
+    .check-section {
+      padding: 28px 16px;
+    }
+    .check-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+    .check-row {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .check-input {
+      flex: 1; padding: 11px 14px; border: 1px solid var(--border);
+      border-radius: 10px; font-size: 15px; outline: none;
+      font-family: inherit;
+    }
+    .check-input:focus { border-color: var(--primary); }
+    .check-btn {
+      padding: 11px 18px; background: var(--primary); color: #fff;
+      border: none; border-radius: 10px; font-size: 14px; font-weight: 700;
+      cursor: pointer; white-space: nowrap;
+    }
+    .check-result {
+      margin-top: 16px; padding: 14px;
+      background: var(--primary-light);
+      border-radius: 10px; display: none;
+    }
+    .check-result.show { display: block; }
+    .check-result-row {
+      display: flex; justify-content: space-between;
+      font-size: 13px; padding: 4px 0;
+    }
+    .check-result-row .label { color: var(--muted); }
+    .check-result-row .value { font-weight: 600; }
+
+    /* ── Image Upload ── */
+    .upload-group { margin-bottom: 14px; }
+    .upload-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text2); }
+    .upload-row { display: flex; gap: 10px; }
+    .upload-box {
+      flex: 1; height: 110px;
+      border: 2px dashed var(--border); border-radius: 12px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
+      background: #fafbfc;
+    }
+    .upload-box:hover { border-color: var(--primary); background: var(--primary-light); }
+    .upload-box.has-img { border-style: solid; border-color: var(--primary); }
+    .upload-box img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 10px;
+    }
+    .upload-box .upload-icon { font-size: 28px; margin-bottom: 4px; }
+    .upload-box .upload-text { font-size: 11px; color: var(--muted); font-weight: 500; }
+    .upload-box .upload-replace {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.55); color: #fff; text-align: center;
+      font-size: 11px; padding: 4px 0; font-weight: 600;
+    }
+    .upload-box input[type=file] { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <span class="dot"></span> 今日已有 <strong>135</strong> 人成功办理健康证
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">🛡️ 官方渠道 · 正规可查</div>
+    <h1>健康证<em>包通过</em></h1>
+    <p class="hero-sub">当天出证 · 全国通用 · 有效期一年<br>美团 / 蜂鸟 / 京东秒送 均可使用</p>
+    <div class="hero-platforms">
+      <span class="platform-tag">🟡 美团</span>
+      <span class="platform-tag">🔵 蜂鸟</span>
+      <span class="platform-tag">🔴 京东秒送</span>
+    </div>
+  </div>
+
+  <!-- 加微信办理 -->
+  <div class="wechat-section" style="margin: 20px 16px 0; padding: 20px; background: linear-gradient(135deg, #00b578, #00c96b); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,181,120,0.3); text-align: center; color: white;">
+    <div style="font-size: 18px; font-weight: 700; margin-bottom: 15px;">加微信办理，快速咨询</div>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+      <div style="flex: 1; max-width: 200px;">
+        <img src="546729f506f9f91f52ff77cbe8a3e21e.png" alt="微信客服" style="width: 100%; border-radius: 12px; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      </div>
+      <div style="flex: 1; text-align: left;">
+        <div style="font-size: 14px; margin-bottom: 10px; line-height: 1.5;">扫码添加客服微信，一对一指导办理</div>
+        <div style="font-size: 12px; opacity: 0.9; line-height: 1.5;">✅ 解答所有疑问<br>✅ 协助提交资料<br>✅ 进度实时跟踪</div>
+      </div>
+    </div>
+    <div style="margin-top: 20px; font-size: 13px; opacity: 0.9;">添加后请发送“健康证办理”快速通过验证</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">98<small>%</small></div>
+      <div class="stat-label">通过率</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10<small>分钟</small></div>
+      <div class="stat-label">出证时间</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5000<small>+</small></div>
+      <div class="stat-label">累计办理</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0<small>元</small></div>
+      <div class="stat-label">不通过全退</div>
+    </div>
+  </div>
+<!-- Order Check -->
+  <div class="check-section">
+    <div class="section-title"><span class="icon">🔍</span> 订单查询</div>
+    <div class="section-desc">输入手机号查询办理进度</div>
+    <div class="check-card">
+      <div class="check-row">
+        <input class="check-input" id="checkPhone" placeholder="输入手机号" type="tel" />
+        <button class="check-btn" onclick="checkOrder()">查询</button>
+      </div>
+      <div class="check-result" id="checkResult">
+        <div class="check-result-row"><span class="label">订单号</span><span class="value" id="cr-id"></span></div>
+        <div class="check-result-row"><span class="label">姓名</span><span class="value" id="cr-name"></span></div>
+        <div class="check-result-row"><span class="label">平台</span><span class="value" id="cr-platform"></span></div>
+        <div class="check-result-row"><span class="label">状态</span><span class="value" id="cr-status"></span></div>
+        <div class="check-result-row"><span class="label">下单时间</span><span class="value" id="cr-time"></span></div>
+        <div id="cr-cert-wrap" style="display:none;margin-top:10px">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:6px">健康证图片：</div>
+          <img id="cr-cert-img" style="width:100%;border-radius:8px;border:1px solid var(--border)" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Steps -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📋</span> 办理流程</div>
+    <div class="section-desc">三步搞定，简单到不需要出门</div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">提交资料并付款</div>
+          <div class="step-desc">填写个人信息，线上支付，手机拍照即可</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">后台审核发货</div>
+          <div class="step-desc">付款后客服1对1审核，确认资料无误后发证</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">收到电子证</div>
+          <div class="step-desc">出证后电子版直发手机，可直接上传美团/蜂鸟/京东平台</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advantages -->
+  <div class="section">
+    <div class="section-title"><span class="icon">✨</span> 为什么选择我们</div>
+    <div class="section-desc">和传统体检说再见</div>
+    <div class="adv-grid">
+      <div class="adv-card highlight">
+        <span class="adv-icon">✅</span>
+        <div class="adv-title">包通过</div>
+        <div class="adv-desc">不过全退，零风险</div>
+      </div>
+      <div class="adv-card highlight">
+        <span class="adv-icon">⚡</span>
+        <div class="adv-title">当天出证</div>
+        <div class="adv-desc">最快2小时拿证</div>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🏠</span>
+        <div class="adv-title">不用出门</div>
+        <div class="adv-desc">全程线上办理</div>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🌏</span>
+        <div class="adv-title">全国通用</div>
+        <div class="adv-desc">各地平台均认可</div>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">🔒</span>
+        <div class="adv-title">正规可查</div>
+        <div class="adv-desc">官方渠道出证</div>
+      </div>
+      <div class="adv-card">
+        <span class="adv-icon">📅</span>
+        <div class="adv-title">有效期一年</div>
+        <div class="adv-desc">一年有效期届满续期</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💰</span> 透明价格</div>
+    <div class="section-desc">一口价，无任何隐形收费</div>
+    <div class="price-card">
+      <div class="price-header">
+        <span class="price-currency">¥</span>
+        <span class="price-amount">20</span>
+        <span class="price-unit">/本</span>
+      </div>
+      <div class="price-original">原价 ¥99</div>
+      <div class="price-features">
+        <div class="price-feat">
+          <span class="check">✓</span>
+          <span><strong>健康证电子版</strong> · 当天出证</span>
+        </div>
+        <div class="price-feat">
+          <span class="check">✓</span>
+          <span><strong>全国通用</strong> · 美团/蜂鸟/京东秒送</span>
+        </div>
+        <div class="price-feat">
+          <span class="check">✓</span>
+          <span><strong>包通过</strong> · 不过全额退款</span>
+        </div>
+        <div class="price-feat">
+          <span class="check">✓</span>
+          <span><strong>1对1客服</strong> · 随时咨询进度</span>
+        </div>
+        <div class="price-feat">
+          <span class="check">✓</span>
+          <span><strong>有效期一年</strong> · 正规可查</span>
+        </div>
+      </div>
+    </div>
+    <div class="guarantee">
+      <span class="guarantee-icon">🛡️</span>
+      <div>
+        <div class="guarantee-title">不通过全额退款承诺</div>
+        <div class="guarantee-desc">办理不成功，7个工作日内原路全额退回，不扣一分钱。零风险，放心办。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💬</span> 真实评价</div>
+    <div class="section-desc">来自各平台骑手的反馈</div>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🛵</div>
+          <div>
+            <div class="review-name">张师傅</div>
+            <div class="review-platform">美团骑手</div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <div class="review-text">之前去医院体检排了3小时队，这次手机上就搞定了，下午就收到证了，直接上传美团审核秒过！</div>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">📦</div>
+          <div>
+            <div class="review-name">李哥</div>
+            <div class="review-platform">蜂鸟骑手</div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <div class="review-text">本来怕不正规，结果拿到证去蜂鸟上传一次就过了，跟以前去医院办的一模一样，省了大半天时间。</div>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🚴</div>
+          <div>
+            <div class="review-name">王姐</div>
+            <div class="review-platform">京东秒送骑手</div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <div class="review-text">客服很耐心，一步一步教我拍照，当天晚上证就来了，京东秒送那边也顺利通过，强烈推荐！</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-title"><span class="icon">❓</span> 常见问题</div>
+    <div class="section-desc">你关心的都在这里</div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q">
+          <span>健康证是全国通用的吗？</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">是的，我们办理的健康证为全国通用电子版，美团、蜂鸟、京东秒送等各平台均认可，可正常上传审核。</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>真的包通过吗？不过怎么办？</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">我们承诺包通过。如果平台审核不通过，7个工作日内全额退款，不收任何费用。</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>多久能拿到证？</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">资料提交无误后，最快2小时出证，一般当天都能拿到。高峰期最迟不超过24小时。</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>需要体检吗？</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">不需要线下体检，只需提交身份证照片和白底证件照即可，全程线上办理。</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>健康证有效期多久？</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">健康证有效期为一年，到期后需重新办理或续期。</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-spacer"></div>
+
+
+
+
+
+
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const DB_KEY = 'healthcert_orders';
+    const platformNames = { meituan: '美团', fengniao: '蜂鸟', jd: '京东秒送' };
+    const statusNames = { paid: '已付款', delivered: '已发货', rejected: '已退款' };
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+    });
+
+    // Toast
+    function showToast(msg, duration = 2000) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), duration);
+    }
+
+    // ── Image Upload ──
+    let idFrontData = '';
+
+    function handleUpload(input, boxId, dataVar) {
+      const file = input.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) { showToast('图片不能超过5MB'); input.value = ''; return; }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        idFrontData = e.target.result;
+        const box = document.getElementById(boxId);
+        box.classList.add('has-img');
+        box.innerHTML = `<img src="${idFrontData}" /><div class="upload-replace">点击更换</div><input type="file" id="${input.id}" accept="image/*" onchange="handleUpload(this,'${boxId}','${dataVar}')" />`;
+      };
+      reader.readAsDataURL(file);
+    }
+
+
+
+    // Step 3: Confirm payment → save order → show success
+    function confirmPay() {
+      console.log('支付功能已禁用，请通过微信客服办理');
+      return;
+    }
+
+
+
+    // Order check
+    function checkOrder() {
+      const phone = document.getElementById('checkPhone').value.trim();
+      if (!phone) { showToast('请输入手机号'); return; }
+      const orders = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
+      const order = orders.find(o => o.phone === phone);
+      const result = document.getElementById('checkResult');
+      if (order) {
+        document.getElementById('cr-id').textContent = order.id;
+        document.getElementById('cr-name').textContent = order.name;
+        document.getElementById('cr-platform').textContent = platformNames[order.platform];
+        document.getElementById('cr-status').textContent = statusNames[order.status] || order.status;
+        document.getElementById('cr-time').textContent = order.createdAt.replace('T', ' ').slice(0, 16);
+        const certWrap = document.getElementById('cr-cert-wrap');
+        if (order.status === 'delivered' && order.certImg) {
+          document.getElementById('cr-cert-img').src = order.certImg;
+          certWrap.style.display = '';
+        } else {
+          certWrap.style.display = 'none';
+        }
+        result.classList.add('show');
+      } else {
+        result.classList.remove('show');
+        showToast('未找到订单，请确认手机号');
+      }
+    }
+
+    // Stats counter animation
+    function animateNum(el, target, suffix = '') {
+      let cur = 0;
+      const step = Math.ceil(target / 30);
+      const timer = setInterval(() => {
+        cur += step;
+        if (cur >= target) { cur = target; clearInterval(timer); }
+        el.innerHTML = cur + '<small>' + suffix + '</small>';
+      }, 35);
+    }
+    const statsStrip = document.querySelector('.stats-strip');
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        const nums = document.querySelectorAll('.stat-num');
+        animateNum(nums[0], 98, '%');
+        animateNum(nums[2], 5000, '+');
+        io.disconnect();
+      }
+    }, { threshold: 0.5 });
+    io.observe(statsStrip);
+
+    // Top bar rotating numbers
+    setInterval(() => {
+      const strong = document.querySelector('.top-bar strong');
+      const base = 135;
+      const variation = Math.floor(Math.random() * 30) - 15;
+      strong.textContent = Math.max(80, base + variation);
+    }, 5000);
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(() => console.log('SW registered'));
+    }
+  </script>
+</body>
+</html>
