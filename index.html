@@ -414,21 +414,22 @@
         }
 
         .official-certificate .bottom-bar-purple {
-            position: absolute;
-            bottom: 0;
+            position: relative;
+            bottom: auto;
             left: 0;
             right: 0;
-            height: 24px;
+            height: 28px;
             background: #2563eb;
-            border-radius: 0 0 6px 6px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 2px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
             font-family: KaiTi, STKaiti, serif;
+            margin-bottom: 6px;
         }
 
         /* 预览框4 + 结果框4 水印 */
@@ -772,17 +773,13 @@
             }
             /* 结果框4标题缩小以适应手机 */
             #resultTitle4 {
-                font-size: 16px !important;
-                gap: 4px !important;
+                font-size: 20px !important;
+                min-height: 44px !important;
+                padding-top: 2px !important;
+                padding-bottom: 2px !important;
             }
-            #resultTitle4 img {
-                height: 30px !important;
-            }
-            #resultTitle4 span {
-                font-size: 16px !important;
-            }
-            #resultTitle4 span span {
-                font-size: 11px !important;
+            #resultTitle4 span:last-child {
+                font-size: 12px !important;
             }
         }
 
@@ -1036,7 +1033,7 @@ document.body.appendChild(sharedSealCanvas);
 // 结果框4 体检机构编辑同步到底部发证机构
 document.getElementById('resultHospital4').addEventListener('input', function() {
     document.querySelectorAll('#resultBox4 .bottom-bar-agency, #previewBox4 .bottom-bar-agency').forEach(function(el) {
-        el.textContent = this.textContent;
+        el.textContent = this.textContent + '印制';
     }.bind(this));
 });
 </script>
@@ -2650,9 +2647,12 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                         <i class="fa fa-chevron-down text-yellow-600" id="collapseIcon"></i>
                     </div>
                     <div id="collapseContainer" class="mt-2" style="display: none;">
-
-                
-                        
+                        <!-- 自定义背景 -->
+                        <div class="flex items-center gap-2 mb-2 p-2 bg-gray-50 rounded">
+                            <span class="text-xs font-medium" style="width:60px;">背景图</span>
+                            <input type="file" id="bgUpload4" accept="image/*" style="flex:1;font-size:12px;">
+                            <button onclick="clearBg4()" style="font-size:11px;padding:2px 8px;border:1px solid #ccc;border-radius:4px;background:#fff;cursor:pointer;">清除</button>
+                        </div>
                     </div>
                 </div>
                 
@@ -3180,7 +3180,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                             </div>
                             <div class="flex items-center gap-2 mb-1">
                                 <span style="font-size:11px;color:#666;width:48px;">标题</span>
-                                <input type="text" id="sealTitleText" value="体检专用章" style="flex:1;font-size:11px;padding:2px 4px;border:1px solid #ddd;border-radius:3px;">
+                                <input type="text" id="sealTitleText" value="体检专用" style="flex:1;font-size:11px;padding:2px 4px;border:1px solid #ddd;border-radius:3px;">
                             </div>
                             <div class="flex items-center gap-2 mb-1">
                                 <span style="font-size:11px;color:#666;width:48px;">副标题</span>
@@ -3317,16 +3317,17 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             </div>
             <div class="official-certificate bg-white p-4 rounded-md shift-down" id="previewBox4" style="margin-left: 0;">
                 <div class="logo-preview" id="previewLogo4"></div>
-                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="previewTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;height:56px;line-height:1.3;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:6px;font-family:KaiTi,STKaiti,serif;font-size:28px;"><img src="logo.png" style="height:50px;width:auto;display:block;"><span style="display:flex;flex-direction:column;align-items:center;line-height:1.3;">健 康 证 明<span style="font-size:15px;font-weight:400;letter-spacing:1px;font-family:KaiTi,STKaiti,serif;">HEALTH CERTIFICATE</span></span></h3>
+                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="previewTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
+                <p><strong>编 号:</strong> <span id="previewNumber4" style="color:#dc2626;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p><strong>姓名:</strong> <span id="previewName4"></span>&nbsp;&nbsp;&nbsp;<strong>性别:</strong> <span id="previewGender4"></span>&nbsp;&nbsp;&nbsp;<strong>年龄:</strong> <span id="previewAge4"></span></p>
                 <p><strong>身份证:</strong> <span id="previewIdNumber4"></span></p>
                 <p><strong>类 别:</strong> <span id="previewCategory4"></span></p>
-                <p><strong>编 号:</strong> <span id="previewNumber4" style="color:#dc2626;font-size:16px;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p class="increase-spacing"><strong>体检机构:</strong> <span id="previewHospital4"></span></p>
                 <p><strong>有效期:</strong> <span id="previewExpirationDate4"></span></p>
                 <div class="seal-preview" id="previewSeal4"></div>
                 <div class="qr-preview" id="previewQr4"></div>
                 <div class="photo-preview" id="previewPhoto4" style="width: 147px; height: 206px;"></div>
+                <div id="previewValidity4" style="font-size:11px;color:#333;text-align:center;margin-top:2px;">（有效期一年）</div>
                 <div class="barcode-container" id="barcodePreview4" style="display: none;"><canvas class="barcode-canvas"></canvas></div>
                 <div class="bottom-bar-purple"><span class="bottom-bar-agency"></span></div>
             </div>
@@ -3425,16 +3426,17 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             </div>
             <div class="official-certificate bg-white p-4 rounded-md shift-down" id="resultBox4" style="margin-left: 0;">
                 <div class="logo-preview" id="resultLogo4"></div>
-                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="resultTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;height:56px;line-height:1.3;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:6px;font-family:KaiTi,STKaiti,serif;font-size:28px;"><img src="logo.png" style="height:50px;width:auto;display:block;"><span style="display:flex;flex-direction:column;align-items:center;line-height:1.3;">健 康 证 明<span style="font-size:15px;font-weight:400;letter-spacing:1px;font-family:KaiTi,STKaiti,serif;">HEALTH CERTIFICATE</span></span></h3>
+                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="resultTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
+                <p><strong>编 号:</strong> <span id="resultNumber4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;color:#dc2626;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p><strong>姓名:</strong> <span id="resultName4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span>&nbsp;&nbsp;&nbsp;<strong>性别:</strong> <span id="resultGender4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span>&nbsp;&nbsp;&nbsp;<strong>年龄:</strong> <span id="resultAge4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
                 <p><strong>身份证:</strong> <span id="resultIdNumber4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
                 <p><strong>类 别:</strong> <span id="resultCategory4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
-                <p><strong>编 号:</strong> <span id="resultNumber4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;color:#dc2626;font-size:16px;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p class="increase-spacing"><strong>体检机构:</strong> <span id="resultHospital4" contenteditable="true" style="border-bottom: 1px solid #ccc; padding-bottom: 2px;"></span></p>
                 <p><strong>有效期:</strong> <span id="resultExpirationDate4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
                 <div class="seal-preview" id="resultSeal4"></div>
                 <div class="qr-preview" id="resultQr4"></div>
                 <div class="photo-preview" id="resultPhoto4"></div>
+                <div id="resultValidity4" style="font-size:11px;color:#333;text-align:center;margin-top:2px;">（有效期一年）</div>
                 <div class="barcode-container" id="barcodeResult4" style="display: none;"><canvas class="barcode-canvas"></canvas></div>
                 <div class="bottom-bar-purple"><span class="bottom-bar-agency"></span></div>
             </div>
@@ -4333,6 +4335,70 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             }
         }
         
+        // 自定义背景上传
+        document.addEventListener('change', function(e) {
+            if (e.target && e.target.id === 'bgUpload4') {
+                var file = e.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(ev) {
+                        var dataUrl = ev.target.result;
+                        // 保存到 localStorage
+                        try { localStorage.setItem('bg4', dataUrl); } catch(ex) {}
+                        // 应用到预览框4和结果框4
+                        var boxes = ['previewBox4', 'resultBox4'];
+                        boxes.forEach(function(id) {
+                            var box = document.getElementById(id);
+                            if (box) {
+                                box.style.setProperty('background-image', 'url(' + dataUrl + ')', 'important');
+                                box.style.setProperty('background-size', 'cover', 'important');
+                                box.style.setProperty('background-position', 'center center', 'important');
+                                box.style.setProperty('background-repeat', 'no-repeat', 'important');
+                            }
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+        
+        // 清除自定义背景
+        function clearBg4() {
+            try { localStorage.removeItem('bg4'); } catch(ex) {}
+            var boxes = ['previewBox4', 'resultBox4'];
+            boxes.forEach(function(id) {
+                var box = document.getElementById(id);
+                if (box) {
+                    box.style.setProperty('background-image', 'url(logo1.jpg)', 'important');
+                    box.style.setProperty('background-size', 'contain', 'important');
+                    box.style.setProperty('background-position', 'center center', 'important');
+                    box.style.setProperty('background-repeat', 'no-repeat', 'important');
+                }
+            });
+            // 清空文件输入
+            var input = document.getElementById('bgUpload4');
+            if (input) input.value = '';
+        }
+        
+        // 页面加载时恢复已保存的背景
+        (function() {
+            try {
+                var savedBg = localStorage.getItem('bg4');
+                if (savedBg) {
+                    var boxes = ['previewBox4', 'resultBox4'];
+                    boxes.forEach(function(id) {
+                        var box = document.getElementById(id);
+                        if (box) {
+                            box.style.setProperty('background-image', 'url(' + savedBg + ')', 'important');
+                            box.style.setProperty('background-size', 'cover', 'important');
+                            box.style.setProperty('background-position', 'center center', 'important');
+                            box.style.setProperty('background-repeat', 'no-repeat', 'important');
+                        }
+                    });
+                }
+            } catch(ex) {}
+        })();
+        
         function removeUploadedImage() {
             const previewPhoto4 = document.getElementById('previewPhoto4');
             const resultPhoto4 = document.getElementById('resultPhoto4');
@@ -4642,13 +4708,13 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             // 更新预览框4的标题
             const previewTitle4 = document.getElementById('previewTitle4');
             if (previewTitle4) {
-                previewTitle4.textContent = '上传健康证';
+                previewTitle4.innerHTML = '<img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span>';
             }
             
             // 更新结果框4的标题
             const resultTitle4 = document.getElementById('resultTitle4');
             if (resultTitle4) {
-                resultTitle4.textContent = '上传健康证';
+                resultTitle4.innerHTML = '<span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span>';
             }
         }
         
@@ -6080,7 +6146,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             if (domElements.previewHospital4) domElements.previewHospital4.textContent = hospital3;
             // 预览框4底部发证机构
             document.querySelectorAll('#previewBox4 .bottom-bar-agency, #resultBox4 .bottom-bar-agency').forEach(function(el) {
-                el.textContent = hospital3;
+                el.textContent = hospital3 + '印制';
             });
             // 预览框4有效期：当前时间加364天
             if (domElements.previewExpirationDate4) {
@@ -6354,7 +6420,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 canvas.width = 1000;
                 
                 // 生成印章
-                createSeal('sharedSealCanvas', hospital, '体检专用章');
+                createSeal('sharedSealCanvas', hospital, '体检专用');
                 
                 // 将canvas转换为图片并设置到预览印章
                 var dataURL = canvas.toDataURL('image/png');
@@ -6393,6 +6459,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                     previewSeal4.innerHTML = '<img src="' + dataURL + '" alt="">';
                     previewSeal4.style.position = 'absolute';
                     previewSeal4.style.zIndex = '20';
+                    previewSeal4.style.display = 'block';
                     var baseSize4 = window.innerWidth < 640 ? 110 : 170;
                     var sealSizeSlider4 = document.getElementById('sealSizeSlider');
                     var sizePercent4 = sealSizeSlider4 ? parseInt(sealSizeSlider4.value) : 60;
@@ -6424,7 +6491,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 var canvas = sharedSealCanvas;
                 canvas.width = 1000;
 
-                createSeal('sharedSealCanvas', hospital, '体检专用章');
+                createSeal('sharedSealCanvas', hospital, '体检专用');
 
                 var dataURL = canvas.toDataURL('image/png');
 
@@ -6463,6 +6530,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                     previewSeal4.innerHTML = '<img src="' + dataURL + '" alt="">';
                     previewSeal4.style.position = 'absolute';
                     previewSeal4.style.zIndex = '20';
+                    previewSeal4.style.display = 'block';
                     var baseSize4 = window.innerWidth < 640 ? 110 : 170;
                     var sealSizeSlider4 = document.getElementById('sealSizeSlider');
                     var sizePercent4 = sealSizeSlider4 ? parseInt(sealSizeSlider4.value) : 60;
@@ -6514,6 +6582,20 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                     if (previewPhoto4) {
                         Object.assign(previewPhoto4.style, positionStyles, { top: '60px' });
                     }
+                    
+                    // 定位有效期文字到照片正下方
+                    var validityTexts = ['previewValidity4', 'resultValidity4'];
+                    validityTexts.forEach(function(id) {
+                        var vt = document.getElementById(id);
+                        if (vt) {
+                            vt.style.position = 'absolute';
+                            vt.style.top = '135px';
+                            vt.style.right = '10px';
+                            vt.style.fontSize = '11px';
+                            vt.style.color = '#333';
+                            vt.style.whiteSpace = 'nowrap';
+                        }
+                    });
                     
                     // 隐藏上传后的预览照片div
                     if (previewPhoto) {
@@ -7357,7 +7439,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             document.getElementById('resultHospital4').textContent = hospital3;
             // 结果框4底部发证机构
             document.querySelectorAll('#resultBox4 .bottom-bar-agency, #previewBox4 .bottom-bar-agency').forEach(function(el) {
-                el.textContent = hospital3;
+                el.textContent = hospital3 + '印制';
             });
             
             const resultPhotoImg = previewResultPhoto.querySelector('img');
@@ -7380,6 +7462,17 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 resultPhoto4.style.top = '60px';
                 resultPhoto4.style.right = '10px';
                 resultPhoto4.style.transform = 'none';
+                
+                // 定位有效期文字到照片正下方
+                const resultValidity4 = document.getElementById('resultValidity4');
+                if (resultValidity4) {
+                    resultValidity4.style.position = 'absolute';
+                    resultValidity4.style.top = '135px';
+                    resultValidity4.style.right = '10px';
+                    resultValidity4.style.fontSize = '11px';
+                    resultValidity4.style.color = '#333';
+                    resultValidity4.style.whiteSpace = 'nowrap';
+                }
             }
             
             const resultQrImg = previewQrFinal.querySelector('img');
@@ -7596,7 +7689,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             var sealStarSize = 100;
             var sealCircleSize = 18;
             var sealStarYOffset = parseInt((document.getElementById('sealStarY') || {}).value) || 0;
-            var sealTitleText = (document.getElementById('sealTitleText') || {}).value || name || '体检专用章';
+            var sealTitleText = (document.getElementById('sealTitleText') || {}).value || name || '体检专用';
             var sealSubtitleText = (document.getElementById('sealSubtitleText') || {}).value || '';
             var sealNumberText = (document.getElementById('sealNumberText') || {}).value || '';
             var sealFontFamily = (document.getElementById('sealFontFamily') || {}).value || 'Helvetica';
@@ -7919,7 +8012,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             }
             
             // 生成印章
-            createSeal('sharedSealCanvas', hospital, '体检专用章');
+            createSeal('sharedSealCanvas', hospital, '体检专用');
             
             // 将canvas转换为图片并设置到预览印章
             var dataURL = canvas.toDataURL('image/png');
@@ -8913,9 +9006,20 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             clearPhoto();
             
             // 设置默认照片占位符，确保图片元素默认处于显示状态
-            const defaultPhotoUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="390" viewBox="0 0 100 130"><rect width="100" height="130" fill="%23f0f0f0"/></svg>';
-            // 从localStorage获取用户上传的相片
-            const savedPhoto = getPhotoData ? getPhotoData() : null;
+            const defaultPhotoUrl = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="390" viewBox="0 0 100 130"><rect width="100" height="130" fill="%23e0e0e0" stroke="%23b0b0b0" stroke-width="2"/><text x="50" y="70" font-size="10" text-anchor="middle" fill="%23999" dominant-baseline="middle">照片</text></svg>';
+            // 从localStorage获取用户上传的相片（兼容两种存储方式）
+            var savedPhoto = null;
+            try {
+                savedPhoto = localStorage.getItem('healthPhoto');
+            } catch(e) {}
+            if (!savedPhoto && typeof getPhotoData === 'function') {
+                var photoResult = getPhotoData();
+                if (photoResult && typeof photoResult === 'object' && photoResult.data) {
+                    savedPhoto = photoResult.data;
+                } else if (typeof photoResult === 'string') {
+                    savedPhoto = photoResult;
+                }
+            }
             const photoUrl = savedPhoto || defaultPhotoUrl;
             // 生成默认二维码图片（无提示文字）
             const defaultQrCodeUrl = 'data:image/gif;base64,R0lGODdhdAB0AIAAAAAAAP///ywAAAAAdAB0AAAC/4yPqcvtD6OctNqLs968+w+G4kiW5omm6sq27gvH8kzX9o3n+s73/g90AYbEovGIRCABSiJjCY0yR9KqsXnEThXW7jbktWqL2mdYSjqjD8vyQh1NOy/k91xSt+TB98rejddH8fdBGDhkhjhhGMHI4fjACMkluFjpsVcFGKDJ1pe5ZjCZARrnqSgayvnJapqKygfb+fo1uyrbCrUJUqp7WqvaO5b0K4fregt8fGW33FZMlftMuzmd0Gs9ioFNTA1NKyndnWys7OuNnhzuPK5NJ571Td7MnG7rrgdfP58+vOy/D58ffcLkAawW7FIHbvHsKcxGMFe5bQ8l0qMIi5dCCP/rzCX6MmjjBoG75HXECLKQSAcnDbo8lBITHIj/TM4cp/FmQIsOdZK05JMnv6FBf8IMirAmOJ9B3mVsGsMoVBFSp+aM2SPMx6Q7ny5tOPSqLa4HX6prt5KUl602wXakifXR2ottu2K9l/Zq2Xxez3ahwTBupIpqAOtD+VHrjMCI6SlWAfcx0bSjrImNiKwgS8o4VbqFQ3Zw372x7ErW3KByZ8irJytNnXD0Cst1S1LKnPcE7Z4eRZ8L+2K3696bccsWgnlfaN62WwQWjjp6bhPPW0t/XdWzubG1u/f78VYo9Ok1wmO3Tt5wX7ikm/MwT9zv3fRAi7L9Xlz57KLrhXLsbI0Cf/299h9YLAg4H4G+ZaeBVAwOB9CDBQqWn1znITORUxQ2Ip4qGfK14YRcCafXL+z5dt816B2nFjufsdjSbfrht1By7pkFX4olfmWXiHTJGGNpEXZooImE/RagjXXl6BiA0bjYo5EDziifhPUNeSGV42Gom5K8MWbWjVR5ORyYNIoppJRR8kiaaizuWCWRpvn3YwoOHtZkkTB9OBCUiTlZ4ZMh1rklklcK2hibeVLp45j8tZkciV0+quaIcyFHqaJfXuqcgJBCyZ1Voo5Kaqmmnopqqqquymqrrr4Ka6yyzkprrbbeiqsLBQAAOw==';
@@ -8926,6 +9030,15 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             resultPhoto.innerHTML = `<img src="${photoUrl}">`;
             previewPhoto1.innerHTML = `<img src="${photoUrl}">`;
             previewPhoto3.innerHTML = `<img src="${photoUrl}">`;
+            
+            // 补充设置其他照片预览框
+            var extraPhotoIds = ['previewPhoto4', 'resultPhoto3', 'resultPhoto4'];
+            extraPhotoIds.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el && !el.querySelector('img')) {
+                    el.innerHTML = `<img src="${photoUrl}">`;
+                }
+            });
             
             // 设置照片位置
             previewPhoto1.style.position = 'absolute';
@@ -8965,6 +9078,37 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 previewPhoto4.style.width = '56px';
                 previewPhoto4.style.height = '73px';
             }
+            
+            // 补充设置其他照片预览框的位置
+            var extraPhotoPositions = {
+                resultPhoto3: { top: '80px', right: '10px' },
+                resultPhoto4: { top: '60px', right: '10px' }
+            };
+            Object.keys(extraPhotoPositions).forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) {
+                    el.style.position = 'absolute';
+                    el.style.top = extraPhotoPositions[id].top;
+                    el.style.right = extraPhotoPositions[id].right;
+                    el.style.transform = 'none';
+                    el.style.width = '56px';
+                    el.style.height = '73px';
+                }
+            });
+            
+            // 定位有效期文字到照片正下方
+            var validityIds = ['previewValidity4', 'resultValidity4'];
+            validityIds.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) {
+                    el.style.position = 'absolute';
+                    el.style.top = '135px';
+                    el.style.right = '10px';
+                    el.style.fontSize = '11px';
+                    el.style.color = '#666';
+                    el.style.whiteSpace = 'nowrap';
+                }
+            });
             
             // 更新照片大小
             updatePhotoSize();
