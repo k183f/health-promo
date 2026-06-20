@@ -833,6 +833,54 @@
             }
         }
 
+        /* 极小屏幕适配 (<420px) */
+        @media (max-width: 420px) {
+            #previewBox4, #resultBox4 {
+                padding: 6px 6px !important;
+                min-height: 200px !important;
+            }
+            #previewBox4 h3, #resultBox4 h3 {
+                font-size: 18px !important;
+                width: calc(100% + 0.8rem) !important;
+                margin-left: -0.4rem !important;
+                margin-right: -0.4rem !important;
+                min-height: 40px !important;
+                padding-top: 2px !important;
+                padding-bottom: 2px !important;
+            }
+            #previewBox4 h3 img, #resultBox4 h3 img {
+                height: 22px !important;
+                margin-right: 6px !important;
+                margin-left: -6px !important;
+            }
+            #previewBox4 h3 span:last-child, #resultBox4 h3 span:last-child {
+                font-size: 10px !important;
+            }
+            #previewBox4 p, #resultBox4 p {
+                font-size: 12px !important;
+                padding-right: 40px !important;
+            }
+            #previewPhoto4, #resultPhoto4 {
+                width: 40px !important;
+                height: 52px !important;
+                top: 44px !important;
+                right: 4px !important;
+            }
+            #previewSeal4, #resultSeal4 {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            #previewNumber4, #resultNumber4 {
+                font-size: 12px !important;
+            }
+            #previewBox4 p strong, #resultBox4 p strong {
+                font-size: 12px !important;
+            }
+            .official-certificate h3 > span > span:first-child {
+                font-size: clamp(14px, 4.5vw, 22px) !important;
+            }
+        }
+
         .dragging {
             opacity: 0.8;
             transform: scale(1.05) !important;
