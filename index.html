@@ -474,6 +474,10 @@
             height: 100%;
         }
 
+        .official-certificate h3 > span > span:first-child {
+            font-size: clamp(16px, 5vw, 28px);
+        }
+
         @media (max-width: 640px) {
             .max-w-md {
                 max-width: 100%;
@@ -780,6 +784,52 @@
             }
             #resultTitle4 span:last-child {
                 font-size: 12px !important;
+            }
+            /* 手机屏幕适配 - 预览框4 / 结果框4 */
+            #previewBox4, #resultBox4 {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: unset !important;
+                box-sizing: border-box !important;
+                padding: 8px 10px !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                background-size: contain !important;
+            }
+            #previewBox4 h3, #resultBox4 h3 {
+                font-size: 22px !important;
+                width: calc(100% + 1.2rem) !important;
+                margin-left: -0.6rem !important;
+                margin-right: -0.6rem !important;
+                min-height: 46px !important;
+                line-height: 1.1 !important;
+                padding-top: 3px !important;
+                padding-bottom: 3px !important;
+            }
+            #previewBox4 h3 img, #resultBox4 h3 img {
+                height: 28px !important;
+                margin-right: 8px !important;
+                margin-left: -10px !important;
+            }
+            #previewBox4 h3 span:last-child, #resultBox4 h3 span:last-child {
+                font-size: 12px !important;
+            }
+            #previewBox4 p, #resultBox4 p {
+                font-size: 13px !important;
+                padding-right: 50px !important;
+            }
+            #previewPhoto4, #resultPhoto4 {
+                width: 48px !important;
+                height: 62px !important;
+                top: 52px !important;
+                right: 6px !important;
+            }
+            #previewSeal4, #resultSeal4 {
+                width: 100px !important;
+                height: 100px !important;
+            }
+            #previewNumber4, #resultNumber4 {
+                font-size: 14px !important;
             }
         }
 
@@ -3317,7 +3367,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             </div>
             <div class="official-certificate bg-white p-4 rounded-md shift-down" id="previewBox4" style="margin-left: 0;">
                 <div class="logo-preview" id="previewLogo4"></div>
-                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="previewTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
+                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="previewTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
                 <p><strong>编 号:</strong> <span id="previewNumber4" style="color:#dc2626;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p><strong>姓名:</strong> <span id="previewName4"></span>&nbsp;&nbsp;&nbsp;<strong>性别:</strong> <span id="previewGender4"></span>&nbsp;&nbsp;&nbsp;<strong>年龄:</strong> <span id="previewAge4"></span></p>
                 <p><strong>身份证:</strong> <span id="previewIdNumber4"></span></p>
@@ -3327,7 +3377,6 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 <div class="seal-preview" id="previewSeal4"></div>
                 <div class="qr-preview" id="previewQr4"></div>
                 <div class="photo-preview" id="previewPhoto4" style="width: 147px; height: 206px;"></div>
-                <div id="previewValidity4" style="font-size:11px;color:#333;text-align:center;margin-top:2px;">（有效期一年）</div>
                 <div class="barcode-container" id="barcodePreview4" style="display: none;"><canvas class="barcode-canvas"></canvas></div>
                 <div class="bottom-bar-purple"><span class="bottom-bar-agency"></span></div>
             </div>
@@ -3426,7 +3475,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             </div>
             <div class="official-certificate bg-white p-4 rounded-md shift-down" id="resultBox4" style="margin-left: 0;">
                 <div class="logo-preview" id="resultLogo4"></div>
-                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="resultTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
+                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="resultTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
                 <p><strong>编 号:</strong> <span id="resultNumber4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;color:#dc2626;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p><strong>姓名:</strong> <span id="resultName4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span>&nbsp;&nbsp;&nbsp;<strong>性别:</strong> <span id="resultGender4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span>&nbsp;&nbsp;&nbsp;<strong>年龄:</strong> <span id="resultAge4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
                 <p><strong>身份证:</strong> <span id="resultIdNumber4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
@@ -3436,7 +3485,6 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 <div class="seal-preview" id="resultSeal4"></div>
                 <div class="qr-preview" id="resultQr4"></div>
                 <div class="photo-preview" id="resultPhoto4"></div>
-                <div id="resultValidity4" style="font-size:11px;color:#333;text-align:center;margin-top:2px;">（有效期一年）</div>
                 <div class="barcode-container" id="barcodeResult4" style="display: none;"><canvas class="barcode-canvas"></canvas></div>
                 <div class="bottom-bar-purple"><span class="bottom-bar-agency"></span></div>
             </div>
@@ -4708,13 +4756,13 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             // 更新预览框4的标题
             const previewTitle4 = document.getElementById('previewTitle4');
             if (previewTitle4) {
-                previewTitle4.innerHTML = '<img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span>';
+                previewTitle4.innerHTML = '<img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span>';
             }
             
             // 更新结果框4的标题
             const resultTitle4 = document.getElementById('resultTitle4');
             if (resultTitle4) {
-                resultTitle4.innerHTML = '<span>体检合格健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span>';
+                resultTitle4.innerHTML = '<span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span>';
             }
         }
         
@@ -6583,20 +6631,6 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                         Object.assign(previewPhoto4.style, positionStyles, { top: '60px' });
                     }
                     
-                    // 定位有效期文字到照片正下方
-                    var validityTexts = ['previewValidity4', 'resultValidity4'];
-                    validityTexts.forEach(function(id) {
-                        var vt = document.getElementById(id);
-                        if (vt) {
-                            vt.style.position = 'absolute';
-                            vt.style.top = '135px';
-                            vt.style.right = '10px';
-                            vt.style.fontSize = '11px';
-                            vt.style.color = '#333';
-                            vt.style.whiteSpace = 'nowrap';
-                        }
-                    });
-                    
                     // 隐藏上传后的预览照片div
                     if (previewPhoto) {
                         previewPhoto.style.display = 'none';
@@ -7463,17 +7497,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 resultPhoto4.style.right = '10px';
                 resultPhoto4.style.transform = 'none';
                 
-                // 定位有效期文字到照片正下方
-                const resultValidity4 = document.getElementById('resultValidity4');
-                if (resultValidity4) {
-                    resultValidity4.style.position = 'absolute';
-                    resultValidity4.style.top = '135px';
-                    resultValidity4.style.right = '10px';
-                    resultValidity4.style.fontSize = '11px';
-                    resultValidity4.style.color = '#333';
-                    resultValidity4.style.whiteSpace = 'nowrap';
                 }
-            }
             
             const resultQrImg = previewQrFinal.querySelector('img');
             if (resultQrImg) {
@@ -9096,19 +9120,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 }
             });
             
-            // 定位有效期文字到照片正下方
-            var validityIds = ['previewValidity4', 'resultValidity4'];
-            validityIds.forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) {
-                    el.style.position = 'absolute';
-                    el.style.top = '135px';
-                    el.style.right = '10px';
-                    el.style.fontSize = '11px';
-                    el.style.color = '#666';
-                    el.style.whiteSpace = 'nowrap';
-                }
-            });
+            
             
             // 更新照片大小
             updatePhotoSize();
