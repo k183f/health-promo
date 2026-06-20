@@ -817,6 +817,8 @@
             #previewBox4 p, #resultBox4 p {
                 font-size: 13px !important;
                 padding-right: 50px !important;
+                font-weight: bold !important;
+                color: #000 !important;
             }
             #previewPhoto4, #resultPhoto4 {
                 width: 48px !important;
@@ -870,6 +872,8 @@
             #previewBox4 p, #resultBox4 p {
                 font-size: 12px !important;
                 padding-right: 40px !important;
+                font-weight: bold !important;
+                color: #000 !important;
             }
             #previewPhoto4, #resultPhoto4 {
                 width: 40px !important;
@@ -3338,7 +3342,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                         </div>
                         
                     <button type="submit" id="generateBtn" style="display: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600;">
-                        <i class="fa fa-save"></i> 生成健康证明
+                        <i class="fa fa-save"></i> 生成健 康 证 明
                     </button>
                     <button type="button" id="saveToBackendBtn" onclick="saveToBackend()" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600;">
                         <i class="fa fa-cloud-upload"></i> 保存到后台
@@ -3426,7 +3430,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             </div>
             <div class="official-certificate bg-white p-4 rounded-md shift-down" id="previewBox4" style="margin-left: 0;">
                 <div class="logo-preview" id="previewLogo4"></div>
-                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="previewTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
+                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="previewTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健 康 证 明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
                 <p><strong>编 号:</strong> <span id="previewNumber4" style="color:#dc2626;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p><strong>姓名:</strong> <span id="previewName4"></span>&nbsp;&nbsp;&nbsp;<strong>性别:</strong> <span id="previewGender4"></span>&nbsp;&nbsp;&nbsp;<strong>年龄:</strong> <span id="previewAge4"></span></p>
                 <p><strong>身份证:</strong> <span id="previewIdNumber4"></span></p>
@@ -3534,7 +3538,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             </div>
             <div class="official-certificate bg-white p-4 rounded-md shift-down" id="resultBox4" style="margin-left: 0;">
                 <div class="logo-preview" id="resultLogo4"></div>
-                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="resultTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
+                <h3 class="text-lg font-bold text-white bg-blue-600 px-8 py-1 text-center" id="resultTitle4" contenteditable="true" style="width:calc(100% + 2rem);margin-left:-1rem;margin-right:-1rem;min-height:56px;line-height:1.2;box-sizing:content-box;display:flex;flex-direction:row;justify-content:center;align-items:center;font-family:KaiTi,STKaiti,serif;font-size:28px;padding-top:4px;padding-bottom:4px;"><img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健 康 证 明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span></h3>
                 <p><strong>编 号:</strong> <span id="resultNumber4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;color:#dc2626;font-weight:bold;letter-spacing:1px;"></span></p>
                 <p><strong>姓名:</strong> <span id="resultName4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span>&nbsp;&nbsp;&nbsp;<strong>性别:</strong> <span id="resultGender4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span>&nbsp;&nbsp;&nbsp;<strong>年龄:</strong> <span id="resultAge4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
                 <p><strong>身份证:</strong> <span id="resultIdNumber4" contenteditable="true" style="border-bottom:1px dashed #ccc;padding-bottom:1px;"></span></p>
@@ -4383,7 +4387,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             addEventListeners(exportPreview1Button, function() {
                 const el = document.querySelector('#previewContainer .health-certificate');
                 if (el) {
-                    exportElement(el, '预览框1-从业人员健康证明.png');
+                    exportElement(el, '预览框1-从业人员健 康 证 明.png');
                     const n = document.getElementById('name')?.value || document.getElementById('previewName')?.textContent || '';
                     const id = document.getElementById('idNumber')?.value || document.getElementById('previewIdNumber')?.textContent || '';
                     if (n && id) addHistory(n, id);
@@ -4815,13 +4819,13 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
             // 更新预览框4的标题
             const previewTitle4 = document.getElementById('previewTitle4');
             if (previewTitle4) {
-                previewTitle4.innerHTML = '<img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span>';
+                previewTitle4.innerHTML = '<img src="logo.png" style="height:36px;width:auto;margin-right:12px;margin-left:-20px;"><span style="display:flex;flex-direction:column;align-items:center;"><span>健 康 证 明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span></span>';
             }
             
             // 更新结果框4的标题
             const resultTitle4 = document.getElementById('resultTitle4');
             if (resultTitle4) {
-                resultTitle4.innerHTML = '<span>健康证明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span>';
+                resultTitle4.innerHTML = '<span>健 康 证 明</span><span style="font-size:15px;font-weight:400;letter-spacing:1px;">HEALTH CERTIFICATE</span>';
             }
         }
         
@@ -5324,7 +5328,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>健康证明预览</title>
+                    <title>健 康 证 明预览</title>
                     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
                 </head>
                 <body>${cloudContent}</body>
@@ -7540,7 +7544,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 resultPhoto.innerHTML = resultPhotoImg.outerHTML;
                 resultPhoto.style.transform = previewResultPhoto.style.transform;
                 
-                // 为生成区第三个健康证明添加照片
+                // 为生成区第三个健 康 证 明添加照片
                 const resultPhoto3 = document.getElementById('resultPhoto3');
                 resultPhoto3.innerHTML = resultPhotoImg.outerHTML;
                 resultPhoto3.style.position = 'absolute';
@@ -7548,7 +7552,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 resultPhoto3.style.right = '10px';
                 resultPhoto3.style.transform = 'none';
                 
-                // 为生成区第四个健康证明添加照片
+                // 为生成区第四个健 康 证 明添加照片
                 const resultPhoto4 = document.getElementById('resultPhoto4');
                 resultPhoto4.innerHTML = resultPhotoImg.outerHTML;
                 resultPhoto4.style.position = 'absolute';
@@ -7622,7 +7626,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 }
             }
             
-            // 为生成区第一个健康证明添加印章
+            // 为生成区第一个健 康 证 明添加印章
             const resultSealImg = previewSeal1.querySelector('img');
             if (resultSealImg) {
                 resultSeal1.innerHTML = resultSealImg.outerHTML;
@@ -7632,7 +7636,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 resultSeal1.style.transform = 'translate(-50%, 50%)';
             }
             
-            // 为生成区第三个健康证明添加印章
+            // 为生成区第三个健 康 证 明添加印章
             const resultSealImg3 = previewSeal3.querySelector('img');
             if (resultSealImg3) {
                 resultSeal3.innerHTML = resultSealImg3.outerHTML;
@@ -7648,7 +7652,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 }
             }
             
-            // 为生成区第四个健康证明添加印章
+            // 为生成区第四个健 康 证 明添加印章
             const resultSealImg4 = previewSeal3.querySelector('img');
             if (resultSealImg4) {
                 resultSeal4.innerHTML = resultSealImg4.outerHTML;
@@ -8596,7 +8600,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 }).then(canvas => {
                     // 创建下载链接
                     const link = document.createElement('a');
-                    link.download = `健康证明_${new Date().toISOString().slice(0, 10)}.png`;
+                    link.download = `健 康 证 明_${new Date().toISOString().slice(0, 10)}.png`;
                     link.href = canvas.toDataURL('image/png');
                     link.click();
                     
@@ -8713,7 +8717,7 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                 }).then(canvas => {
                     // 转换为 Blob
                     canvas.toBlob(function(blob) {
-                        const filename = `健康证明_预览框${boxNumber}_${new Date().toISOString().slice(0, 10)}.png`;
+                        const filename = `健 康 证 明_预览框${boxNumber}_${new Date().toISOString().slice(0, 10)}.png`;
 
                         // 创建 URL
                         const url = URL.createObjectURL(blob);
@@ -8730,8 +8734,8 @@ document.getElementById('resultHospital4').addEventListener('input', function() 
                             const file = new File([blob], filename, { type: 'image/png' });
                             navigator.share({
                                 files: [file],
-                                title: '健康证明',
-                                text: '导出的健康证明'
+                                title: '健 康 证 明',
+                                text: '导出的健 康 证 明'
                             }).catch(() => {
                                 // 分享失败或取消，回退到下载
                                 document.body.appendChild(link);
