@@ -831,6 +831,17 @@
             #previewNumber4, #resultNumber4 {
                 font-size: 14px !important;
             }
+            /* 防止标题过长溢出 */
+            #previewTitle2, #resultTitle2,
+            #previewTitle3, #resultTitle3 {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                white-space: nowrap !important;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
         }
 
         /* 极小屏幕适配 (<420px) */
